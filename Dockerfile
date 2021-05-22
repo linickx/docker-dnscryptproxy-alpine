@@ -1,4 +1,4 @@
-FROM alpine
+FROM alpine:latest
 
 LABEL maintainer="Nick [linickx.com]"
 LABEL version="0.1"

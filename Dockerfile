@@ -5,7 +5,7 @@ LABEL version="0.1"
 
 # Install
 RUN apk update \
-    && apk add dnscrypt-proxy 
+    && apk add dnscrypt-proxy tzdata
 
 # Enable the Server Listeners
 RUN sed -i "s|listen_addresses = \['127.0.0.1:53'\]|#listen_addresses = ['127.0.0.1:53']|" /etc/dnscrypt-proxy/dnscrypt-proxy.toml

@@ -1,17 +1,21 @@
-name: Docker Image CI
+name: Docker Image Build and Push
 
 on:
-  push:
-    branches: [ "main" ]
-  schedule:
-    - cron: "6 6 6 * *"
+  workflow_dispatch:
+    inputs:
+      message:
+        description: 'Message to print'
+        required: false
+        default: 'No message provided'
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout the repository
-      uses: actions/checkout@v4
+      uses: actions/checkout@v4  
+    - run: |
+          echo "Webhook Msg -- ${{ inputs.message }}"
     - name: Build the Docker image
       run: docker build . --file Dockerfile -t ${{ vars.DOCKERHUB_USERNAME }}/dnscryptproxy-alpine:latest
     - name: Login to DockerHub
